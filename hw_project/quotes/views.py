@@ -22,6 +22,10 @@ def main(request, page=1):
     quotes_on_page = paginator.get_page(page)
     return render(request, 'quotes/index.html', context={'quotes': quotes_on_page})
 
+def show_author(request, author_id):
+    author = Author.objects.get(pk=author_id)
+    return render(request, 'quotes/show_author.html', context={"author": author})
+
 @login_required
 def add_author(request):
     if request.method == 'POST':
